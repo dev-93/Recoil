@@ -2,13 +2,13 @@ import React from 'react';
 import './App.css';
 import Counter from './Counter';
 import { useRecoilValue } from 'recoil';
-import { CountState } from './atoms';
+import { CountLabelState } from './atoms';
 
 function App() {
-    const count = useRecoilValue(CountState);
+    const countLabelState = useRecoilValue(CountLabelState);
     return (
         <>
-            <p>App Count State: {count}</p>
+            <p>App Count State: {countLabelState}</p>
             <Counter />
         </>
     );

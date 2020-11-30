@@ -1,20 +1,28 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { CountState } from './atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { CountLabelState, CountState, CountTypeState } from './atoms';
 
 const Counter = () => {
-    const [count, setCount] = useRecoilState(CountState);
+    const [,setCount] = useRecoilState(CountState);
+    const [,setCountType] = useRecoilState(CountTypeState);
+    const countLabel = useRecoilValue(CountLabelState);
 
     return (
         <div>
-            <p>Counter Component State: {count}</p>
+            <p>Counter Component State: {countLabel}</p>
             <button 
                 type="button"
-                onClick={()=>setCount((prevState) => prevState + 1)}
+                onClick={()=> {
+                    setCountType("increment");
+                    setCount((prevState) => prevState + 1);
+                }}
             >+</button>
             <button 
                 type="button"
-                onClick={()=>setCount((prevState) => prevState - 1)}
+                onClick={()=> {
+                    setCountType("decrement");
+                    setCount((prevState) => prevState - 1);
+                }}
             >-</button>
         </div>
     );
